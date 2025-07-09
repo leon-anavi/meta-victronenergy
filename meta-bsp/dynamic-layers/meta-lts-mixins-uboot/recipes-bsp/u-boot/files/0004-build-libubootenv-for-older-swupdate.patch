@@ -1,0 +1,41 @@
+From 37cacbb7c8ecf8f620d75d957ad3640862f5bfd3 Mon Sep 17 00:00:00 2001
+From: Jeroen Hofstee <jhofstee@victronenergy.com>
+Date: Sun, 5 Jun 2022 11:19:57 +0000
+Subject: [PATCH 4/4] build libubootenv for older swupdate
+
+U-boot uses thin archive nowadays, so create a normal archive
+for libubootenv so older swupdate can link to it.
+
+Upstream-Status: Inappropriate [Venus specific]
+
+Signed-off-by: Leon Anavi <leon.anavi@konsulko.com>
+---
+ tools/env/Makefile | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/tools/env/Makefile b/tools/env/Makefile
+index b627796e94..397af2cf21 100644
+--- a/tools/env/Makefile
++++ b/tools/env/Makefile
+@@ -19,7 +19,7 @@ ifeq ($(MTD_VERSION),old)
+ HOST_EXTRACFLAGS += -DMTD_OLD
+ endif
+ 
+-always := fw_printenv
++always := fw_printenv libubootenv.a
+ hostprogs-y := fw_printenv
+ 
+ lib-y += fw_env.o \
+@@ -28,6 +28,9 @@ lib-y += fw_env.o \
+ 
+ fw_printenv-objs := fw_env_main.o $(lib-y)
+ 
++$(obj)/libubootenv.a: $(addprefix $(obj)/,$(lib-y))
++	ar cr $@ $(lib-y)
++
+ quiet_cmd_crosstools_strip = STRIP   $^
+       cmd_crosstools_strip = $(STRIP) $^; touch $@
+ 
+-- 
+2.44.3
+
