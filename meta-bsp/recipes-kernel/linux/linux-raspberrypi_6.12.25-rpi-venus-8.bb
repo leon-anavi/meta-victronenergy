@@ -10,7 +10,7 @@ SRC_URI = " \
     git://github.com/leon-anavi/linux.git;name=machine;branch=leon/rpi-venus-6.12.25;protocol=https \
 "
 
-SRCREV = "03b482dcd014212bbefb24251cd74762b6fc167e"
+SRCREV = "2ff2e64a51f5d9d96d8f9578416a924db375141e"
 S = "${WORKDIR}/git"
 UPSTREAM_CHECK_GITTAGREGEX = "v(?P<pver>\S+)"
 
