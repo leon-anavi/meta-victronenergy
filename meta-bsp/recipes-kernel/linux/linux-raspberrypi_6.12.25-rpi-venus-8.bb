@@ -7,10 +7,10 @@ inherit kernel
 COMPATIBLE_MACHINE = "^rpi$"
 
 SRC_URI = " \
-    git://github.com/leon-anavi/linux.git;name=machine;branch=leon/rpi-venus-6.12.25;protocol=https \
+    git://github.com/victronenergy/linux.git;name=machine;branch=rpi-venus-6.12.25;protocol=https \
 "
 
-SRCREV = "2ff2e64a51f5d9d96d8f9578416a924db375141e"
+SRCREV = "082125db8bdc2bc571004a1946f06cf4c8e38df8"
 S = "${WORKDIR}/git"
 UPSTREAM_CHECK_GITTAGREGEX = "v(?P<pver>\S+)"
 
