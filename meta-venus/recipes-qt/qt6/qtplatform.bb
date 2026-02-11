@@ -1,4 +1,5 @@
 SRC_URI += "file://qt-kms.conf file://qt6.sh"
+SRC_URI:append:rpi = " file://qt-dsi.conf"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 LICENSE = "MIT"
@@ -12,3 +13,6 @@ do_install:append() {
     install ${UNPACKDIR}/qt6.sh ${D}/${sysconfdir}/profile.d/qt6.sh
 }
 
+do_install:append:rpi() {
+    install ${UNPACKDIR}/qt-dsi.conf ${D}/${sysconfdir}
+}
